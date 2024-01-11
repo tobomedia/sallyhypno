@@ -22,6 +22,7 @@ export interface HomepageMeta {
  */
 export interface Hero {
   imageSrc: string;
+  profilePhoto: string;
   name: string;
   description: JSX.Element;
   actions: HeroActionItem[];
@@ -125,6 +126,7 @@ export const ContactType = {
   Facebook: 'Facebook',
   Twitter: 'Twitter',
   Instagram: 'Instagram',
+  Whatsapp: 'Whatsapp',
 } as const;
 
 export type ContactType = (typeof ContactType)[keyof typeof ContactType];
