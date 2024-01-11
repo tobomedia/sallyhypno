@@ -16,19 +16,22 @@ const nextConfig = {
     return config;
   },
   compress: true,
+  output: 'export',
   generateEtags: true,
-  pageExtensions: ['tsx', 'mdx', 'ts'],
+  pageExtensions: ['tsx', 'mdx', 'ts', 'html'],
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
   swcMinify: true,
   trailingSlash: false,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-      },{
+      },
+      {
         protocol: 'https',
         hostname: 'source.unsplash.com',
       },
