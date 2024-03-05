@@ -4,8 +4,8 @@ import { FC, ForwardRefExoticComponent, SVGProps } from 'react';
 import { IconProps } from '../components/Icon/Icon';
 
 export interface HomepageMeta {
-  title: string | any;
-  description: string;
+  title?: string | any;
+  description?: string;
   ogImageUrl?: string;
   twitterCardType?: 'summary' | 'summary_large';
   twitterTitle?: string;
@@ -99,7 +99,7 @@ export interface TimelineItem {
  */
 export interface TestimonialSection {
   imageSrc?: string | StaticImageData;
-  testimonials: Testimonial[];
+  testimonials?: Testimonial[];
 }
 
 export interface Testimonial {
@@ -113,8 +113,8 @@ export interface Testimonial {
  */
 export interface ContactSection {
   headerText?: string;
-  description: string;
-  items: ContactItem[];
+  description?: string;
+  items?: ContactItem[];
 }
 
 export const ContactType = {

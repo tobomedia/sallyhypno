@@ -18,8 +18,8 @@ export default function TreatmentPage(props: any) {
   if (router.isFallback) {
     return null;
   }
-
-  const treatmentHeading = router.query?.treatment.replace(/-/g, ' ');
+  // @ts-ignore
+  const treatmentHeading = router.query?.treatment ? router.query?.treatment.replace(/-/g, ' ') : '';
   const thisPost = props.cmsContent.data.treatmentsCollection.items.find(
     (item: any) => item.heading.toLowerCase() === treatmentHeading,
   );
