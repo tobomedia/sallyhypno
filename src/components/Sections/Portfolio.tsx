@@ -6,6 +6,7 @@ import {SectionId} from '../../data/data';
 import {PortfolioItem} from '../../data/dataDef';
 // import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import Section from '../Layout/Section';
+import Link from 'next/link';
 
 const Portfolio = memo((props: any) => {
   console.log('Post', props.content?.items);
@@ -55,20 +56,19 @@ const ItemOverlay: FC<{item: PortfolioItem}> = memo(({item: {heading, subheading
   }, []);
 
   return (
-    <a
+    <Link
       className={classNames(
         'absolute inset-0 w-full  bg-gray-900 transition-all duration-300 opacity-70',
         mobile ? 'h-2/3' : 'h-1/3',
       )}
-      href={`/treatments/${heading.toLowerCase().replace(/\s/g, '-')}`}
-      target="_blank">
+      href={`/treatments/${heading.toLowerCase().replace(/\s/g, '-')}`}>
       <div className="relative h-full w-full p-4">
         <div className="flex h-full w-full flex-col gap-y-2 overflow-y-auto overscroll-contain">
           <h2 className="text-center font-bold text-white opacity-100">{heading}</h2>
           <p className="text-xs text-white opacity-100 sm:text-sm">{subheading}</p>
         </div>
       </div>
-    </a>
+    </Link>
   );
 });
 
