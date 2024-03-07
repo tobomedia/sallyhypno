@@ -16,6 +16,8 @@ const Header = dynamic(() => import('../../components/Sections/Header'), {ssr: f
 export default function TreatmentPage(props: any) {
   const router = useRouter();
   if (router.isFallback) {
+    console.log({props});
+
     return null;
   }
   // @ts-ignore
