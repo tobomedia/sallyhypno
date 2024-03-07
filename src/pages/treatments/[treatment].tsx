@@ -14,10 +14,9 @@ import Section from '../../components/Layout/Section';
 const Header = dynamic(() => import('../../components/Sections/Header'), {ssr: false});
 
 export default function TreatmentPage(props: any) {
+  console.log({props});
   const router = useRouter();
   if (router.isFallback) {
-    console.log({props});
-
     return null;
   }
   // @ts-ignore
