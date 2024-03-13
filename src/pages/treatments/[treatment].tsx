@@ -27,7 +27,7 @@ interface thisPost {
 }
 
 export default function TreatmentPage(props: any) {
-  console.log({props});
+  console.log('treatement', {props});
   // const [cmsData, setCmsData] = useState(false);
   const [treatmentHeading, setTreatmentHeading] = useState('');
   const [thisPost, setThisPost] = useState<thisPost>({
@@ -45,11 +45,11 @@ export default function TreatmentPage(props: any) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props?.cmsContent?.data?.treatmentsCollection) {
+    if (props?.cmsData?.data?.treatmentsCollection) {
       // @ts-ignore
       setTreatmentHeading(router.query?.treatment ? router.query?.treatment.replace(/-/g, ' ') : '');
       setThisPost(
-        props?.cmsContent?.data?.treatmentsCollection?.items.find(
+        props?.cmsData?.data?.treatmentsCollection?.items.find(
           (item: any) => item.heading.toLowerCase() === treatmentHeading,
         ),
       );
@@ -66,7 +66,7 @@ export default function TreatmentPage(props: any) {
   // }
   // @ts-ignore
   return thisPost ? (
-    <Page title={router.query.treatment} description={props?.cmsContent?.subheading}>
+    <Page title={router.query.treatment} description={props?.cmsData?.subheading}>
       <Header />
       <Section className="flex justify-center">
         <div className="prose prose-sm text-gray-300 prose-base">
@@ -84,34 +84,34 @@ export default function TreatmentPage(props: any) {
   );
 }
 /* <div dangerouslySetInnerHTML={documentToHtmlString(thisPost.mainContent.json)} /> */
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [],
+//     fallback: false,
+//   };
+// }
 
-export const getStaticProps = (async () => {
-  console.log('getStaticProps');
+// export const getStaticProps = (async () => {
+//   console.log('getStaticProps');
 
-  const res = await fetchGraphQL(`{
-    treatmentsCollection {
-      items {
-        heading
-        subheading
-        mainImage {
-          url
-        }
-        mainContent {
-          json
-          
-        }
-      }
-    }
-  }`);
+//   const res = await fetchGraphQL(`{
+//     treatmentsCollection {
+//       items {
+//         heading
+//         subheading
+//         mainImage {
+//           url
+//         }
+//         mainContent {
+//           json
 
-  const cmsContent = await res;
-  return {props: {cmsContent}};
-}) satisfies GetStaticProps<{
-  cmsContent: any;
-}>;
+//         }
+//       }
+//     }
+//   }`);
+
+//   const cmsContent = await res;
+//   return {props: {cmsContent}};
+// }) satisfies GetStaticProps<{
+//   cmsContent: any;
+// }>;

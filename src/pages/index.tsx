@@ -9,23 +9,25 @@ import Hero from '../components/Sections/Hero';
 import Portfolio from '../components/Sections/Portfolio';
 import Testimonials from '../components/Sections/Testimonials';
 import {homePageMeta} from '../data/data';
-import fetchGraphQL from '../data/fetchContentful';
+// import fetchGraphQL from '../data/fetchContentful';
 
-import type {GetStaticProps} from 'next';
+// import type {GetStaticProps} from 'next';
 
 // eslint-disable-next-line react-memo/require-memo
 const Header = dynamic(() => import('../components/Sections/Header'), {ssr: false});
 
 const Home: FC = memo((props: any) => {
   const {title, description} = homePageMeta;
-  const {cmsContent} = props;
+  console.table(props);
+
+  const {cmsData} = props;
 
   return (
     <Page description={description} title={title}>
       <Header />
       <Hero />
       <About />
-      <Portfolio content={cmsContent.data.treatmentsCollection} />
+      <Portfolio content={cmsData.data.treatmentsCollection} />
       <Testimonials />
       <Contact />
       <Footer />
@@ -33,29 +35,29 @@ const Home: FC = memo((props: any) => {
   );
 });
 
-export const getStaticProps = (async () => {
-  const res = await fetchGraphQL(`{
-    treatmentsCollection {
-      items {
-        heading
-        subheading
-        mainImage {
-          url
-        }
-        mainContent {
-          json
-          
-        }
-      }
-    }
-    
-  }`);
-  console.table(res);
+// export const getStaticProps = (async () => {
+//   const res = await fetchGraphQL(`{
+//     treatmentsCollection {
+//       items {
+//         heading
+//         subheading
+//         mainImage {
+//           url
+//         }
+//         mainContent {
+//           json
 
-  const cmsContent = await res;
-  return {props: {cmsContent}};
-}) satisfies GetStaticProps<{
-  cmsContent: any;
-}>;
+//         }
+//       }
+//     }
+
+//   }`);
+//   console.table(res);
+
+//   const cmsContent = await res;
+//   return {props: {cmsContent}};
+// }) satisfies GetStaticProps<{
+//   cmsContent: any;
+// }>;
 
 export default Home;
