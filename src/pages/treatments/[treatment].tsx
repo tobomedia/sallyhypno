@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
-import fetchGraphQL from '../../data/fetchContentful';
+// import fetchGraphQL from '../../data/fetchContentful';
 
 import {useState, useEffect} from 'react';
 
-import type {GetStaticProps} from 'next';
+// import type {GetStaticProps} from 'next';
 
 import Page from '../../components/Layout/Page';
 import Contact from '../../components/Sections/Contact';
