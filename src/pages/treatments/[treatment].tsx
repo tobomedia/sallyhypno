@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
-// import fetchGraphQL from '../../data/fetchContentful';
 
 import {useState, useEffect} from 'react';
 
@@ -27,8 +26,6 @@ interface thisPost {
 }
 
 export default function TreatmentPage(props: any) {
-  console.log('treatement', {props});
-  // const [cmsData, setCmsData] = useState(false);
   const [treatmentHeading, setTreatmentHeading] = useState('');
   const [thisPost, setThisPost] = useState<thisPost>({
     heading: '',
@@ -59,11 +56,6 @@ export default function TreatmentPage(props: any) {
       setMainContentRenderd(documentToHtmlString(thisPost?.mainContent?.json));
   });
 
-  console.log({thisPost});
-
-  // if (router.isFallback) {
-  //   return null;
-  // }
   // @ts-ignore
   return thisPost ? (
     <Page title={router.query.treatment} description={props?.cmsData?.subheading}>
@@ -83,35 +75,3 @@ export default function TreatmentPage(props: any) {
     <h1> Loading.... </h1>
   );
 }
-/* <div dangerouslySetInnerHTML={documentToHtmlString(thisPost.mainContent.json)} /> */
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: false,
-//   };
-// }
-
-// export const getStaticProps = (async () => {
-//   console.log('getStaticProps');
-
-//   const res = await fetchGraphQL(`{
-//     treatmentsCollection {
-//       items {
-//         heading
-//         subheading
-//         mainImage {
-//           url
-//         }
-//         mainContent {
-//           json
-
-//         }
-//       }
-//     }
-//   }`);
-
-//   const cmsContent = await res;
-//   return {props: {cmsContent}};
-// }) satisfies GetStaticProps<{
-//   cmsContent: any;
-// }>;

@@ -9,17 +9,12 @@ import Hero from '../components/Sections/Hero';
 import Portfolio from '../components/Sections/Portfolio';
 import Testimonials from '../components/Sections/Testimonials';
 import {homePageMeta} from '../data/data';
-// import fetchGraphQL from '../data/fetchContentful';
-
-// import type {GetStaticProps} from 'next';
 
 // eslint-disable-next-line react-memo/require-memo
 const Header = dynamic(() => import('../components/Sections/Header'), {ssr: false});
 
 const Home: FC = memo((props: any) => {
   const {title, description} = homePageMeta;
-  console.table(props);
-
   const {cmsData} = props;
 
   return (
@@ -28,36 +23,11 @@ const Home: FC = memo((props: any) => {
       <Hero />
       <About />
       <Portfolio content={cmsData.data.treatmentsCollection} />
-      <Testimonials />
+      <Testimonials content={cmsData.data.testimonialCollection} />
       <Contact />
       <Footer />
     </Page>
   );
 });
-
-// export const getStaticProps = (async () => {
-//   const res = await fetchGraphQL(`{
-//     treatmentsCollection {
-//       items {
-//         heading
-//         subheading
-//         mainImage {
-//           url
-//         }
-//         mainContent {
-//           json
-
-//         }
-//       }
-//     }
-
-//   }`);
-//   console.table(res);
-
-//   const cmsContent = await res;
-//   return {props: {cmsContent}};
-// }) satisfies GetStaticProps<{
-//   cmsContent: any;
-// }>;
 
 export default Home;
