@@ -11,7 +11,7 @@ import Section from '../Layout/Section';
 
 import {documentToHtmlString} from '@contentful/rich-text-html-renderer';
 
-const Testimonials: FC = memo(({content}) => {
+const Testimonials = memo(({content}: any) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [scrollValue, setScrollValue] = useState(0);
   const [parallaxEnabled, setParallaxEnabled] = useState(false);
@@ -88,7 +88,7 @@ const Testimonials: FC = memo(({content}) => {
               className="no-scrollbar flex w-full touch-pan-x snap-x snap-mandatory gap-x-6 overflow-x-auto scroll-smooth"
               onScroll={handleScroll}
               ref={scrollContainer}>
-              {testimonials.map((item, index) => {
+              {testimonials.map((item: any, index: number) => {
                 const isActive = index === activeIndex;
                 return <Testimonial isActive={isActive} key={`${item.clientsName}-${index}`} testimonial={item} />;
               })}

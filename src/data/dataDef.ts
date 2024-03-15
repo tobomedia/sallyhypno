@@ -99,13 +99,13 @@ export interface TimelineItem {
  */
 export interface TestimonialSection {
   imageSrc?: string | StaticImageData;
-  testimonials?: Testimonial[];
+  content?: any;
 }
 
 export interface Testimonial {
-  image?: string;
-  name: string;
-  text: string;
+  clientPhoto?: { url: string };
+  clientsName: string;
+  mainContent: { json: any };
 }
 
 /**
