@@ -22,8 +22,8 @@ const Home: FC = memo((props: any) => {
       <Header />
       <Hero />
       <About />
-      <Portfolio content={cmsData.data.treatmentsCollection} />
-      <Testimonials content={cmsData.data.testimonialCollection} />
+      <Portfolio content={cmsData?.data?.treatmentsCollection} />
+      <Testimonials content={cmsData?.data?.testimonialCollection} />
       <Contact />
       <Footer />
     </Page>

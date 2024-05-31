@@ -1,9 +1,9 @@
 async function fetchGraphQL(query) {
-  return fetch(`https://graphql.contentful.com/content/v1/spaces/c7mmdyj6yd5z`, {
+  return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer oTNUFS2sBeuH2bT7s1EMdjfCA7yy8lWnTmGAgsZIAf0`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_CONTENTFUL_TOKEN}`,
     },
     body: JSON.stringify({query}),
   }).then(response => response.json());
