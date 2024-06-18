@@ -49,6 +49,7 @@ export type SectionId = (typeof SectionId)[keyof typeof SectionId];
  */
 export const heroData: Hero = {
   imageSrc: heroImage,
+  content: {json: []},
   name: `Hi I'm Sally.`,
   profilePhoto: profile,
   description: (

@@ -51,6 +51,23 @@ MyApp.getInitialProps = async (context: AppContext): Promise<AppOwnProps & AppIn
       }
     }  
     
+    welcomAndAbout(id:"6suypqXHQUbSHxLUUqneOh") {
+      welcomeHeading1
+      welcomeMessage {
+        json
+      }
+      aboutText {
+        json
+      }
+
+      highlights {
+        json
+      }
+      info
+      profilePhoto {
+        url 
+      }
+    }
   }`);
   const ctx = await App.getInitialProps(context);
 

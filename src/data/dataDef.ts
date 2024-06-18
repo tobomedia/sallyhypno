@@ -26,6 +26,7 @@ export interface Hero {
   name: string;
   description: JSX.Element;
   actions: HeroActionItem[];
+  content: any;
 }
 
 interface HeroActionItem {

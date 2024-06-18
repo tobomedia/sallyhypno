@@ -1,15 +1,24 @@
 import {ChevronDownIcon} from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import Image from 'next/image';
-import {FC, memo} from 'react';
+import {memo} from 'react';
 
 import {heroData, SectionId} from '../../data/data';
 import Section from '../Layout/Section';
-import Socials from '../Socials';
+// import Socials from '../Socials';
+import {BLOCKS} from '@contentful/rich-text-types';
+import {documentToHtmlString} from '@contentful/rich-text-html-renderer';
 
-const Hero: FC = memo(() => {
-  const {imageSrc, profilePhoto, name, description, actions} = heroData;
+const Hero = memo(({content}: any) => {
+  const {imageSrc, profilePhoto, name, actions} = heroData;
 
+  const welcomeMessageRender = documentToHtmlString(content?.welcomeMessage.json, {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, next) =>
+        `<p class="prose-sm text-stone-200 sm:prose-base lg:prose-lg" >${next(node.content)}</p>`,
+    },
+  });
+  // debugger;
   return (
     <Section noPadding sectionId={SectionId.Hero}>
       <div className="relative flex h-screen w-full items-center justify-center">
@@ -23,11 +32,14 @@ const Hero: FC = memo(() => {
         <div className="z-10  max-w-screen-lg px-4 lg:px-0">
           <div className="flex flex-col items-center gap-y-6 rounded-xl bg-gray-800/20 p-6 text-center shadow-lg backdrop-blur-sm">
             <Image alt="sally" src={profilePhoto} />
-            <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-7xl">{name}</h1>
-            {description}
+            <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-7xl">{content?.welcomeHeading1}</h1>
+            <div dangerouslySetInnerHTML={{__html: welcomeMessageRender}}></div>
+
+            {/* 
+            // {description}
             <div className="flex gap-x-4 text-neutral-100">
               <Socials />
-            </div>
+            </div> */}
             <div className="flex w-full justify-center gap-x-4">
               {actions.map(({href, text, primary, Icon}) => (
                 <a
