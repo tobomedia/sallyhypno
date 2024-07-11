@@ -28,7 +28,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   compress: true,
-  output: 'export',
+  // output: 'export',
   generateEtags: true,
   pageExtensions: ['tsx', 'mdx', 'ts', 'html'],
   poweredByHeader: false,
