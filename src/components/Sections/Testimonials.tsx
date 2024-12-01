@@ -23,7 +23,7 @@ const Testimonials = memo(({content}: any) => {
 
   const {imageSrc} = testimonial;
 
-  const {items: testimonials} = content;
+  const {items: testimonials = ''} = content;
 
   const resolveSrc = useMemo(() => {
     if (!imageSrc) return undefined;

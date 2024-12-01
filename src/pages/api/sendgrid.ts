@@ -59,3 +59,7 @@ async function sendEmail(req, res) {
 }
 
 export default sendEmail;
+
+export const config = {
+  type: "experimental-background",
+};
