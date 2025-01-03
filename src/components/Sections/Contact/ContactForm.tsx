@@ -1,34 +1,54 @@
-import {FC, memo, useState} from 'react';
+import {FC, memo, useCallback, useMemo, useState} from 'react';
 
-// interface FormData {
-//   name: string;
-//   email: string;
-//   message: string;
-// }
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const encode = (data: Object) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+};
 
 const ContactForm: FC = memo(() => {
-  // const defaultData = useMemo(
-  //   () => ({
-  //     name: '',
-  //     email: '',
-  //     message: '',
-  //   }),
-  //   [],
-  // );
+  const defaultData = useMemo(
+    () => ({
+      name: '',
+      email: '',
+      message: '',
+    }),
+    [],
+  );
 
-  // const [data, setData] = useState<FormData>(defaultData);
+  const [data, setData] = useState<FormData>(defaultData);
   const [messageSent, setMessageSent] = useState(false);
 
-  // const onChange = useCallback(
-  //   <T extends HTMLInputElement | HTMLTextAreaElement>(event: React.ChangeEvent<T>): void => {
-  //     const {name, value} = event.target;
+  const OnSubmit = (e: any) => {
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: encode({'form-name': 'contact', data}),
+    })
+      .then(() => alert('Success!'))
+      .catch(error => alert(error));
 
-  //     const fieldData: Partial<FormData> = {[name]: value};
+    setMessageSent(!messageSent);
 
-  //     setData({...data, ...fieldData});
-  //   },
-  //   [data],
-  // );
+    e.preventDefault();
+  };
+
+  const onChange = useCallback(
+    <T extends HTMLInputElement | HTMLTextAreaElement>(event: React.ChangeEvent<T>): void => {
+      const {name, value} = event.target;
+
+      const fieldData: Partial<FormData> = {[name]: value};
+
+      setData({...data, ...fieldData});
+    },
+    [data],
+  );
 
   const inputClasses =
     'bg-neutral-700 border-0 focus:border-0 focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md placeholder:text-neutral-400 placeholder:text-sm text-neutral-200 text-sm';
@@ -38,11 +58,27 @@ const ContactForm: FC = memo(() => {
       className="grid min-h-[320px] grid-cols-1 gap-y-4"
       method="POST"
       name="contact"
-      onSubmit={() => setMessageSent(!messageSent)}
+      onSubmit={e => OnSubmit(e)}
       data-netlify="true">
-      <input className={inputClasses} name="name" placeholder="Name" required type="text" />
-      <input autoComplete="email" className={inputClasses} name="email" placeholder="Email" required type="email" />
-      <textarea className={inputClasses} maxLength={250} name="message" placeholder="Message" required rows={6} />
+      <input className={inputClasses} name="name" onChange={onChange} placeholder="Name" required type="text" />
+      <input
+        autoComplete="email"
+        className={inputClasses}
+        name="email"
+        onChange={onChange}
+        placeholder="Email"
+        required
+        type="email"
+      />
+      <textarea
+        className={inputClasses}
+        maxLength={250}
+        name="message"
+        onChange={onChange}
+        placeholder="Message"
+        required
+        rows={6}
+      />
       <input type="hidden" name="form-name" value="contact" />
       <button
         aria-label="Submit contact form"
