@@ -44,6 +44,12 @@ MyApp.getInitialProps = async (context: AppContext): Promise<AppOwnProps & AppIn
       }
     }
 
+    faQs(id:"5JJfxMYsKVLTJoBll1YjsD") {
+      mainContent {
+        json
+      }
+    }
+
     pricing(id:"vhiz8xNkb0vrlaakp2huw") {
       heading
       mainContent {

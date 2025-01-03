@@ -24,6 +24,7 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --tw-prose-headings: #ddd;
 }
 
 html {
@@ -36,7 +37,14 @@ body {
   position: relative;
   width: 100%;
   color: #444444;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Ubuntu,
+    'Helvetica Neue',
+    sans-serif;
   background-color: #fafafa;
 }
 

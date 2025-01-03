@@ -48,6 +48,9 @@ const DesktopNav: FC<{navSections: SectionId[]; currentSection: SectionId | null
               section={section}
             />
           ))}
+          <Link className={classNames(inactiveClass)} href={'/faqs'} key={'faqs'}>
+            {'Faqs'}
+          </Link>
           <Link className={classNames(inactiveClass)} href={'/pricing'} key={'pricing'}>
             {'Pricing'}
           </Link>
