@@ -21,7 +21,7 @@
     "classnames": "^2.3.2",
     "contentful": "^10.6.21",
     "global": "^4.4.0",
-    "netlify-cli": "^17.37.2",
+    "netlify-cli": "^17.38.1",
     "next": "^14.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
