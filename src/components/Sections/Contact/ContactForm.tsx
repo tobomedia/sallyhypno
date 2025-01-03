@@ -35,10 +35,8 @@ const ContactForm: FC = memo(() => {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: encode({'form-name': 'contact', ...data}),
     })
-      .then(() => alert('Success!'))
+      .then(() => setMessageSent(!messageSent))
       .catch(error => alert(error));
-
-    setMessageSent(!messageSent);
 
     e.preventDefault();
   };
