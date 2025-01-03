@@ -6,10 +6,14 @@ interface FormData {
   message: string;
 }
 
-const encode = (data: Object) => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
+interface FormDataToEncode {
+  'form-name': 'contact';
+}
+
+const encode = (data: FormDataToEncode & FormData) => {
+  const keys = Object.keys(data);
+  // @ts-ignore
+  return keys.map((key: string) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
 };
 
 const ContactForm: FC = memo(() => {
@@ -29,7 +33,7 @@ const ContactForm: FC = memo(() => {
     fetch('/', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: encode({'form-name': 'contact', data}),
+      body: encode({'form-name': 'contact', ...data}),
     })
       .then(() => alert('Success!'))
       .catch(error => alert(error));
